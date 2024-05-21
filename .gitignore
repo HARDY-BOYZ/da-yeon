@@ -1,4 +1,7 @@
 HELP.md
+# 2024.05.21 추가 ----
+.DS_Store
+# ------
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -22,6 +25,10 @@ bin/
 *.iws
 *.iml
 *.ipr
+# 2024.05.21 추가 ----
+*.log
+*.sql
+# ------
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
@@ -35,3 +42,32 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# 2024.05.21 추가 ----
+### front ###
+node_modules
+/resources/static/static/
+
+# dependencies
+/node_modules
+/.pnp
+/.env
+/dist
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# ---------
