@@ -1,0 +1,4 @@
+[submodule "da-yeon-sub"]
+	path = da-yeon-sub
+	url = https://github.com/HARDY-BOYZ/da-yeon-sub.git
+	branch = main

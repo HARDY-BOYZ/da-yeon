@@ -28,6 +28,7 @@ bin/
 # 2024.05.21 추가 ----
 *.log
 *.sql
+*.yml
 # ------
 out/
 !**/src/main/**/out/
