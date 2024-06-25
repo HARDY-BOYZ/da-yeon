@@ -46,7 +46,7 @@ tasks.named('test') {
 }
 
 // yml 파일 복사 코드
-tasks.register('copyPrivate', Copy) {
+task copyPrivate(type: Copy) {
     from './da-yeon-sub'
     include "*.yml"
     into 'src/main/resources'

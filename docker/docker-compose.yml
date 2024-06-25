@@ -12,7 +12,7 @@ services:
     ports:
       - '3307:3306'   # 호스트와 컨테이너 간의 포트 매핑 (호스트 포트:컨테이너 포트)
     volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - 'mysql_data:/var/lib/mysql'   # MySQL 데이터 디렉토리를 호스트에 마운트
     networks:
       - dayeon-network   # 컨테이너들이 사용할 네트워크 정의
 
