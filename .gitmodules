@@ -1,4 +1,4 @@
-[submodule "da-yeon-sub"]
-	path = da-yeon-sub
-	url = https://github.com/HARDY-BOYZ/da-yeon-sub.git
+[submodule "oh-woon-wan-sub"]
+	path = oh-woon-wan-sub
+	url = https://github.com/HARDY-BOYZ/oh-woon-wan-sub.git
 	branch = main

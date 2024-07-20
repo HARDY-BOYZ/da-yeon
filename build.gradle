@@ -47,7 +47,7 @@ tasks.named('test') {
 
 // yml 파일 복사 코드
 task copyPrivate(type: Copy) {
-    from './da-yeon-sub'
+    from './oh-woon-wan-sub'
     include "*.yml"
     into 'src/main/resources'
 }
