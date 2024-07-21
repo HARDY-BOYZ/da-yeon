@@ -42,7 +42,6 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
-    dependsOn 'copyPrivate'
 }
 
 // yml 파일 복사 코드

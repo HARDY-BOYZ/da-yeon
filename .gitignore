@@ -178,3 +178,4 @@ application.yml
 .gradle
 .idea
 previous-compilation-data.bin
+build
