@@ -1,6 +1,7 @@
 package com.example.hardyboyz.dayeon.domain.profile.controller;
 
 import com.example.hardyboyz.dayeon.domain.profile.dto.request.UpdateProfileRequest;
+import com.example.hardyboyz.dayeon.domain.profile.dto.response.ProfileResponse;
 import com.example.hardyboyz.dayeon.domain.profile.dto.response.UpdateProfileResponse;
 import com.example.hardyboyz.dayeon.domain.profile.service.ProfileService;
 import com.example.hardyboyz.dayeon.domain.profile.type.Gender;
@@ -12,10 +13,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -76,6 +79,32 @@ class ProfileControllerTest {
                         .content(request))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.nickname").value("닉네임은 2자 이상 20자 이내여야 합니다."));
+    }
+
+    @Test
+    @DisplayName("[프로필 조회] - 성공 검증")
+    void findProfile_success() throws Exception {
+        // given
+        Long memberId = 3L;
+        ProfileResponse expectedResponse = new ProfileResponse(
+                memberId, "최성욱",
+                "첫 소개", "profileImage.jpg",
+                1L, 1L,
+                Gender.MALE);
+
+        given(profileService.findProfile(memberId)).willReturn(expectedResponse);
+
+        // when & then
+        mockMvc.perform(get("/api/oh-woon-wan/profile/{memberId}", memberId))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.id").value(3L))
+                .andExpect(jsonPath("$.nickname").value("최성욱"))
+                .andExpect(jsonPath("$.introduction").value("첫 소개"))
+                .andExpect(jsonPath("$.profileImage").value("profileImage.jpg"))
+                .andExpect(jsonPath("$.follower").value(1L))
+                .andExpect(jsonPath("$.following").value(1L))
+                .andExpect(jsonPath("$.gender").value("MALE"));
     }
 
 }
