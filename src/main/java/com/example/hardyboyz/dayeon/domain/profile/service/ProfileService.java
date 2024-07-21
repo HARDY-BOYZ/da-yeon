@@ -2,6 +2,7 @@ package com.example.hardyboyz.dayeon.domain.profile.service;
 
 import com.example.hardyboyz.dayeon.domain.member.exception.UserNotFoundException;
 import com.example.hardyboyz.dayeon.domain.profile.dto.request.UpdateProfileRequest;
+import com.example.hardyboyz.dayeon.domain.profile.dto.response.ProfileResponse;
 import com.example.hardyboyz.dayeon.domain.profile.dto.response.UpdateProfileResponse;
 import com.example.hardyboyz.dayeon.domain.profile.entity.Profile;
 import com.example.hardyboyz.dayeon.domain.profile.repository.ProfileRepository;
@@ -22,6 +23,12 @@ public class ProfileService {
                 .orElseThrow(UserNotFoundException::new);
         profile.updateProfile(updateProfileRequest);
         return UpdateProfileResponse.from(profileRepository.save(profile));
+    }
+
+    @Transactional(readOnly = true)
+    public ProfileResponse findProfile(Long memberId) {
+        return ProfileResponse.from(profileRepository.findById(memberId)
+                .orElseThrow(UserNotFoundException::new));
     }
 
 }

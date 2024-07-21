@@ -1,6 +1,7 @@
 package com.example.hardyboyz.dayeon.domain.profile.controller;
 
 import com.example.hardyboyz.dayeon.domain.profile.dto.request.UpdateProfileRequest;
+import com.example.hardyboyz.dayeon.domain.profile.dto.response.ProfileResponse;
 import com.example.hardyboyz.dayeon.domain.profile.dto.response.UpdateProfileResponse;
 import com.example.hardyboyz.dayeon.domain.profile.service.ProfileService;
 import jakarta.validation.Valid;
@@ -25,6 +26,17 @@ public class ProfileController {
             @PathVariable Long memberId,
             @Valid @RequestBody UpdateProfileRequest updateProfileRequest) {
         return profileService.update(memberId, updateProfileRequest);
+    }
+
+    /**
+     * 회원 적용 시 id 값 에서 AuthenticationPrincipal 적용 예정
+     *
+     * @param memberId Long -> @AuthenticationPrincipal
+     * @return ProfileResponse 반환
+     */
+    @GetMapping("/{memberId}")
+    public ProfileResponse findProfile(@PathVariable Long memberId) {
+        return profileService.findProfile(memberId);
     }
 
 }
